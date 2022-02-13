@@ -16,7 +16,7 @@ type MongoDbPricesRepository struct {
 func (databaseRepository MongoDbPricesRepository) PersistPrices(prices []domain.Price) {
 	defer func() {
 		if r := recover(); r != nil {
-			fmt.Println("Erro trying to persist prices in mongo database", r)
+			fmt.Println("Error trying to persist prices in mongo database", r)
 		}
 		databaseRepository.CloseDatabaseConnection()
 	}()

@@ -21,7 +21,7 @@ func TestGetCurrentDateFileUrl_ShouldReturnTodayFileUrl(t *testing.T) {
 		mockedCurrentTime: time,
 	}
 	urlGenerator := OmieFileUrlGenerator{
-		timeFetcher: customTimeFetcher,
+		TimeFetcher: customTimeFetcher,
 	}
 
 	omieFileUrl := urlGenerator.GetCurrentDateFileUrl()

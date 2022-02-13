@@ -23,7 +23,10 @@ func TestFetchOmieFilePrices_should_returnTodayPrices(t *testing.T) {
 		Req: request,
 	}
 
-	prices, err := FetchOmieFilePrices(&client)
+	fileFetcher := FileFetcher{
+		Client: &client,
+	}
+	prices, err := fileFetcher.FetchOmieFilePrices()
 
 	if err != nil {
 		t.Error(fmt.Sprintf("Test file can not be parsed, cause: %q", err.Error()))

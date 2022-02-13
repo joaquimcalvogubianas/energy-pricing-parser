@@ -5,11 +5,11 @@ import (
 )
 
 type OmieFileUrlGenerator struct {
-	timeFetcher customTime.TimeFetcher
+	TimeFetcher customTime.TimeFetcher
 }
 
 func (ofug OmieFileUrlGenerator) GetCurrentDateFileUrl() string {
-	var currentTime = ofug.timeFetcher.GetNow()
+	var currentTime = ofug.TimeFetcher.GetNow()
 	var currentTimeFormatted = currentTime.Format("20060102")
 	return "https://www.omie.es/es/file-download?parents%5B0%5D=marginalpdbc&filename=marginalpdbc_" + currentTimeFormatted + ".1"
 }

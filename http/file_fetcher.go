@@ -11,12 +11,16 @@ import (
 	"github.com/joaquimcalvogubianas/energy-pricing-parser/time"
 )
 
-func FetchOmieFilePrices(client HttpClient) ([]domain.Price, error) {
+type FileFetcher struct {
+	Client HttpClient
+}
+
+func (ff FileFetcher) FetchOmieFilePrices() ([]domain.Price, error) {
 	fileUrlGenerator := OmieFileUrlGenerator{
-		timeFetcher: time.LocalTimeFetcher{},
+		TimeFetcher: time.LocalTimeFetcher{},
 	}
 	url := fileUrlGenerator.GetCurrentDateFileUrl()
-	request := client.Request()
+	request := ff.Client.Request()
 	response, error := request.Get(url)
 	if error != nil {
 		return nil, error
@@ -25,10 +29,10 @@ func FetchOmieFilePrices(client HttpClient) ([]domain.Price, error) {
 	responseBody := response.Body()
 	stringResponseBody := string(responseBody[:])
 
-	return parseResponseBody(stringResponseBody)
+	return ff.parseResponseBody(stringResponseBody)
 }
 
-func parseResponseBody(body string) (prices []domain.Price, error error) {
+func (ff FileFetcher) parseResponseBody(body string) (prices []domain.Price, error error) {
 	defer func() {
 		if r := recover(); r != nil {
 			prices = nil

@@ -78,6 +78,12 @@ go.mongodb.org/mongo-driver/x/mongo/driver/session
 go.mongodb.org/mongo-driver/x/mongo/driver/topology
 go.mongodb.org/mongo-driver/x/mongo/driver/uuid
 go.mongodb.org/mongo-driver/x/mongo/driver/wiremessage
+# go.uber.org/dig v1.13.0
+## explicit; go 1.13
+go.uber.org/dig
+go.uber.org/dig/internal/digerror
+go.uber.org/dig/internal/digreflect
+go.uber.org/dig/internal/dot
 # golang.org/x/crypto v0.0.0-20200302210943-78000ba7a073
 ## explicit; go 1.11
 golang.org/x/crypto/ocsp
